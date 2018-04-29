@@ -13,7 +13,7 @@ use Spatie\Fractalistic\ArraySerializer;
 
 /**
  * Class FindContainerDependenciesCommand
- * Parses all files in the Container. This is needed due to the implemented apiato calls.
+ * Parses all files in the Package. This is needed due to the implemented apiato calls.
  * It supports both $this->call(PATH/TO/FILE,... (by parsing imports)
  * as well as $Apiato::call('CONTAINER@FUNC',[args]...
  *
@@ -22,9 +22,9 @@ use Spatie\Fractalistic\ArraySerializer;
 class ListContainerDependenciesCommand extends ConsoleCommand
 {
 
-    protected $signature = 'apiato:list:dependencies {containerPath}';
+    protected $signature = 'apiato:list:dependencies {packagePath}';
 
-    protected $description = 'Lists all dependencies from the given container to other packages.';
+    protected $description = 'Lists all dependencies from the given package to other packages.';
 
     public function __construct()
     {
@@ -33,26 +33,26 @@ class ListContainerDependenciesCommand extends ConsoleCommand
 
     public function handle()
     {
-        $containerPath = $this->argument('containerPath');
+        $packagePath = $this->argument('packagePath');
 
-        $this->info('Searching for dependencies in container: ' . $containerPath);
-        $input = $this->ask('Remove own container from listings? (y/n)');
+        $this->info('Searching for dependencies in package: ' . $packagePath);
+        $input = $this->ask('Remove own package from listings? (y/n)');
 
         $filterOwnContainer = false;
         if (isset($input) && $input == 'y') {
             $filterOwnContainer = true;
         }
 
-        $fileContainerMatch = $this->getDependencies($containerPath, $filterOwnContainer);
+        $fileContainerMatch = $this->getDependencies($packagePath, $filterOwnContainer);
         if (count($fileContainerMatch) > 0) {
             $this->info('Found dependencies:');
             $this->info($this->prettyPrintArray($fileContainerMatch));
 
-            $input = $this->ask('Display Container author and description from the composer.json?(y/n)');
+            $input = $this->ask('Display Package author and description from the composer.json?(y/n)');
             if (isset($input) && $input == 'y') {
                 // $fileContainerMatch structure:
                 // imports
-                //    containerName(s)
+                //    packageName(s)
                 //         File(s)
                 $matches = array_unique(array_keys(array_merge(...array_values($fileContainerMatch))));
                 foreach ($matches as $match) {
@@ -100,12 +100,12 @@ class ListContainerDependenciesCommand extends ConsoleCommand
     /**
      * Get composer information by decoding the json and applying the ComposerTransformer.
      *
-     * @param $containerName
+     * @param $packageName
      * @return array|string
      */
-    private function getComposerInformation($containerName)
+    private function getComposerInformation($packageName)
     {
-        $composerFile = 'app/Packages/' . $containerName . '/composer.json';
+        $composerFile = 'app/Packages/' . $packageName . '/composer.json';
 
         try {
             $content = file_get_contents($composerFile);
@@ -120,7 +120,7 @@ class ListContainerDependenciesCommand extends ConsoleCommand
     }
 
     /**
-     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$containerName\*
+     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$packageName\*
      *
      * @param $filePath string - path to the file
      * @return null | array of packages
@@ -129,7 +129,7 @@ class ListContainerDependenciesCommand extends ConsoleCommand
     {
         $content = file_get_contents($filePath);
 
-        // is the containername alphanumeric?
+        // is the packagename alphanumeric?
         preg_match_all('/use App\\\\Packages\\\\(?P<packages>[a-zA-Z\d]*)\\\\/', $content, $matches);
         $ret = [];
 
@@ -141,7 +141,7 @@ class ListContainerDependenciesCommand extends ConsoleCommand
     }
 
     /**
-     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$containerName\*
+     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$packageName\*
      *
      * @param $filePath string - path to the file
      * @return null | array of packages
@@ -168,10 +168,10 @@ class ListContainerDependenciesCommand extends ConsoleCommand
 
     /**
      * Iterates through the given path recursively to obtain
-     *  1) all used packages of the given container
+     *  1) all used packages of the given package
      *  2) an array that contains the packages as keys and all files using it as value.
      *
-     * @param      $path - to the container
+     * @param      $path - to the package
      * @param bool $filterOwnContainer
      *
      * @return array - [$usedPackages, $filesInPackages]
@@ -199,8 +199,8 @@ class ListContainerDependenciesCommand extends ConsoleCommand
                         $apiatoCalls['packages'] = array_diff($apiatoCalls['packages'], [$ownContainerName]);
                     }
 
-                    foreach ($apiatoCalls['packages'] as $container) {
-                        $filesInPackages['apiatoCalls'][$container][] = $file->getPathName();
+                    foreach ($apiatoCalls['packages'] as $package) {
+                        $filesInPackages['apiatoCalls'][$package][] = $file->getPathName();
                     }
                 }
 
@@ -209,8 +209,8 @@ class ListContainerDependenciesCommand extends ConsoleCommand
                         $imports['packages'] = array_diff($imports['packages'], [$ownContainerName]);
                     }
 
-                    foreach ($imports['packages'] as $container) {
-                        $filesInPackages['imports'][$container][] = $file->getPathName();
+                    foreach ($imports['packages'] as $package) {
+                        $filesInPackages['imports'][$package][] = $file->getPathName();
                     }
                 }
             }

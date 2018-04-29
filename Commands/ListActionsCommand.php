@@ -46,11 +46,11 @@ class ListActionsCommand extends ConsoleCommand
      */
     public function handle()
     {
-        foreach (Apiato::getPackagesNames() as $containerName) {
+        foreach (Apiato::getPackagesNames() as $packageName) {
 
-            $this->console->writeln("<fg=yellow> [$containerName]</fg=yellow>");
+            $this->console->writeln("<fg=yellow> [$packageName]</fg=yellow>");
 
-            $directory = base_path('app/Packages/' . $containerName . '/Actions');
+            $directory = base_path('app/Packages/' . $packageName . '/Actions');
 
             if (File::isDirectory($directory)) {
 

@@ -41,7 +41,7 @@ class ValueGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Values/*';
+    protected $pathStructure = '{package-name}/Values/*';
 
     /**
      * The structure of the file name.
@@ -73,11 +73,11 @@ class ValueGenerator extends GeneratorCommand implements ComponentsGenerator
     {
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name'  => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name'  => $this->packageName,
                 'class-name'      => $this->fileName,
                 'resource-key'    => strtolower(Pluralizer::plural($this->fileName)),
             ],

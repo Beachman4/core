@@ -13,15 +13,15 @@ trait ViewsLoaderTrait
 {
 
     /**
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadViewsFromPackages($containerName)
+    public function loadViewsFromPackages($packageName)
     {
-        $containerViewDirectory = base_path('app/Packages/' . $containerName . '/UI/WEB/Views/');
-        $containerMailTemplatesDirectory = base_path('app/Packages/' . $containerName . '/Mails/Templates/');
+        $packageViewDirectory = base_path('app/Packages/' . $packageName . '/UI/WEB/Views/');
+        $packageMailTemplatesDirectory = base_path('app/Packages/' . $packageName . '/Mails/Templates/');
 
-        $this->loadViews($containerViewDirectory, $containerName);
-        $this->loadViews($containerMailTemplatesDirectory, $containerName);
+        $this->loadViews($packageViewDirectory, $packageName);
+        $this->loadViews($packageMailTemplatesDirectory, $packageName);
     }
 
     /**
@@ -29,19 +29,19 @@ trait ViewsLoaderTrait
      */
     public function loadViewsFromShip()
     {
-        $portMailTemplatesDirectory = base_path('app/Ship/Mails/Templates/');
+        $portMailTemplatesDirectory = base_path('app/Base/Mails/Templates/');
 
-        $this->loadViews($portMailTemplatesDirectory, 'ship'); // Ship views accessible via `ship::`.
+        $this->loadViews($portMailTemplatesDirectory, 'ship'); // Base views accessible via `ship::`.
     }
 
     /**
      * @param $directory
-     * @param $containerName
+     * @param $packageName
      */
-    private function loadViews($directory, $containerName)
+    private function loadViews($directory, $packageName)
     {
         if (File::isDirectory($directory)) {
-            $this->loadViewsFrom($directory, strtolower($containerName));
+            $this->loadViewsFrom($directory, strtolower($packageName));
         }
     }
 

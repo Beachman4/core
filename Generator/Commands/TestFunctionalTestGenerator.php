@@ -41,7 +41,7 @@ class TestFunctionalTestGenerator extends GeneratorCommand implements Components
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/UI/{user-interface}/Tests/Functional/*';
+    protected $pathStructure = '{package-name}/UI/{user-interface}/Tests/Functional/*';
 
     /**
      * The structure of the file name.
@@ -79,19 +79,19 @@ class TestFunctionalTestGenerator extends GeneratorCommand implements Components
 
         // we need to generate the TestCase class before
         $this->call('apiato:generate:test:testcase', [
-            '--container' => $this->containerName,
+            '--package' => $this->packageName,
             '--file' => 'TestCase',
             '--ui' => $ui,
         ]);
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
                 'user-interface' => Str::upper($ui),
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name'  => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name'  => $this->packageName,
                 'class-name'      => $this->fileName,
             ],
             'file-parameters' => [

@@ -14,13 +14,13 @@ trait LocalizationLoaderTrait
 {
 
     /**
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadLocalsFromPackages($containerName)
+    public function loadLocalsFromPackages($packageName)
     {
-        $containerMigrationDirectory = base_path('app/Packages/' . $containerName . '/Resources/Languages');
+        $packageMigrationDirectory = base_path('app/Packages/' . $packageName . '/Resources/Languages');
 
-        $this->loadLocals($containerMigrationDirectory, $containerName);
+        $this->loadLocals($packageMigrationDirectory, $packageName);
     }
 
     /**
@@ -33,13 +33,13 @@ trait LocalizationLoaderTrait
 
     /**
      * @param $directory
-     * @param $containerName
+     * @param $packageName
      */
-    private function loadLocals($directory, $containerName)
+    private function loadLocals($directory, $packageName)
     {
         if (File::isDirectory($directory)) {
 
-            $this->loadTranslationsFrom($directory, strtolower($containerName));
+            $this->loadTranslationsFrom($directory, strtolower($packageName));
 
         }
     }

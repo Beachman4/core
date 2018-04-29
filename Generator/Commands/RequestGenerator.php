@@ -41,7 +41,7 @@ class RequestGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/UI/{user-interface}/Requests/*';
+    protected $pathStructure = '{package-name}/UI/{user-interface}/Requests/*';
 
     /**
      * The structure of the file name.
@@ -81,27 +81,27 @@ class RequestGenerator extends GeneratorCommand implements ComponentsGenerator
             $transporterName = $this->checkParameterOrAsk('transportername', 'Enter the Name of the corresponding Transporter to be assigned');
 
             $transporterComment = '';
-            $transporterClass = '\\App\\Packages\\' . $this->containerName . '\\Data\\Transporters\\' . $transporterName . '::class';
+            $transporterClass = '\\App\\Packages\\' . $this->packageName . '\\Data\\Transporters\\' . $transporterName . '::class';
 
             // now create the Transporter
             $this->call('apiato:generate:transporter', [
-                '--container' => $this->containerName,
+                '--package' => $this->packageName,
                 '--file' => $transporterName,
             ]);
         }
         else {
             $transporterComment = '// ';
-            $transporterClass = '\\App\\Ship\\Transporters\\DataTransporter::class';
+            $transporterClass = '\\App\\Base\\Transporters\\DataTransporter::class';
         }
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
                 'user-interface' => Str::upper($ui),
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'user-interface' => Str::upper($ui),
                 'transporterEnabled' => $transporterComment,

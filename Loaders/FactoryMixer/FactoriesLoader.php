@@ -9,16 +9,16 @@
 
 use Apiato\Core\Foundation\Facades\Apiato;
 
-// Default seeders directory in the container
+// Default seeders directory in the package
 $packagesFactoriesPath = '/Data/Factories/';
 
 // Automatically include Factory Files from all Packages to this file,
 // which will be used by Laravel when dealing with Model Factories.
 
 // Checkout the FactoriesLoaderTrait.php trait, to get an idea on how this works.
-foreach (Apiato::getPackagesNames() as $containerName) {
+foreach (Apiato::getPackagesNames() as $packageName) {
 
-    $packagesDirectory = base_path('app/Packages/' . $containerName . $packagesFactoriesPath);
+    $packagesDirectory = base_path('app/Packages/' . $packageName . $packagesFactoriesPath);
 
     if (\File::isDirectory($packagesDirectory)) {
 

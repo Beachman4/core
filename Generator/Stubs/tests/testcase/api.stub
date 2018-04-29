@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Tests;
+namespace App\Packages\{{package-name}}\Tests;
 
-use App\Packages\{{container-name}}\Tests\TestCase as BaseTestCase;
+use App\Packages\{{package-name}}\Tests\TestCase as BaseTestCase;
 
 /**
  * Class {{class-name}}.
  *
- * This is the container API TestCase class. Use this class to add your container specific API related helper functions.
+ * This is the package API TestCase class. Use this class to add your package specific API related helper functions.
  */
 class {{class-name}} extends BaseTestCase
 {

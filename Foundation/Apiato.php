@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 /**
  * Class Apiato
  *
- * Helper Class to serve Apiato (Ship/Packages).
+ * Helper Class to serve Apiato (Base/Packages).
  *
  * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
@@ -78,7 +78,7 @@ class Apiato
      */
     public function getShipPath()
     {
-        return File::directories(app_path('Ship'));
+        return File::directories(app_path('Base'));
     }
 
     /**
@@ -222,16 +222,16 @@ class Apiato
 
 
     /**
-     * Build namespace for a class in Container.
+     * Build namespace for a class in Package.
      *
-     * @param $containerName
+     * @param $packageName
      * @param $className
      *
      * @return  string
      */
-    public function buildClassFullName($containerName, $className)
+    public function buildClassFullName($packageName, $className)
     {
-        return 'App\Packages\\' . $containerName . '\\' . $this->getClassType($className) . 's\\' . $className;
+        return 'App\Packages\\' . $packageName . '\\' . $this->getClassType($className) . 's\\' . $className;
     }
 
     /**
@@ -250,14 +250,14 @@ class Apiato
     }
 
     /**
-     * @param $containerName
+     * @param $packageName
      *
      * @throws MissingContainerException
      */
-    public function verifyContainerExist($containerName)
+    public function verifyContainerExist($packageName)
     {
-        if (!is_dir(app_path('Packages/' . $containerName))) {
-            throw new MissingContainerException("Container ($containerName) is not installed.");
+        if (!is_dir(app_path('Packages/' . $packageName))) {
+            throw new MissingContainerException("Package ($packageName) is not installed.");
         }
     }
 

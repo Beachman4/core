@@ -69,22 +69,22 @@ trait CallableTrait
      */
     private function resolveClass($class)
     {
-        // in case passing apiato style names such as containerName@classType
+        // in case passing apiato style names such as packageName@classType
         if ($this->needsParsing($class)) {
 
             $parsedClass = $this->parseClassName($class);
 
-            $containerName = $this->capitalizeFirstLetter($parsedClass[0]);
+            $packageName = $this->capitalizeFirstLetter($parsedClass[0]);
             $className = $parsedClass[1];
 
-            Apiato::verifyContainerExist($containerName);
+            Apiato::verifyContainerExist($packageName);
 
-            $class = $classFullName = Apiato::buildClassFullName($containerName, $className);
+            $class = $classFullName = Apiato::buildClassFullName($packageName, $className);
 
             Apiato::verifyClassExist($classFullName);
         } else {
             if (Config::get('apiato.logging.log-wrong-apiato-caller-style', true)) {
-                Log::debug('It is recommended to use the apiato caller style (containerName@className) for ' . $class);
+                Log::debug('It is recommended to use the apiato caller style (packageName@className) for ' . $class);
             }
         }
 
@@ -92,7 +92,7 @@ trait CallableTrait
     }
 
     /**
-     * Split containerName@someClass into container name and class name
+     * Split packageName@someClass into package name and class name
      *
      * @param        $class
      * @param string $delimiter
@@ -105,7 +105,7 @@ trait CallableTrait
     }
 
     /**
-     * If it's apiato Style caller like this: containerName@someClass
+     * If it's apiato Style caller like this: packageName@someClass
      *
      * @param        $class
      * @param string $separator

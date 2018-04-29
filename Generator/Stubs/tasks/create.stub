@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Tasks;
+namespace App\Packages\{{package-name}}\Tasks;
 
-use App\Packages\{{container-name}}\Data\Repositories\{{model}}Repository;
+use App\Packages\{{package-name}}\Data\Repositories\{{model}}Repository;
 use App\Base\Exceptions\CreateResourceFailedException;
 use App\Base\Parents\Tasks\Task;
 use Exception;

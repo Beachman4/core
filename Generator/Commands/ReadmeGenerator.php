@@ -26,7 +26,7 @@ class ReadmeGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var string
      */
-    protected $description = 'Create a README file for a Container';
+    protected $description = 'Create a README file for a Package';
 
     /**
      * The type of class being generated.
@@ -40,7 +40,7 @@ class ReadmeGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/*';
+    protected $pathStructure = '{package-name}/*';
 
     /**
      * The structure of the file name.
@@ -72,11 +72,11 @@ class ReadmeGenerator extends GeneratorCommand implements ComponentsGenerator
     {
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [

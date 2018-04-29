@@ -38,7 +38,7 @@ abstract class GeneratorCommand extends Command
     CONST STUB_PATH = 'Stubs/*';
 
     /**
-     * Relative path for the custom stubs (relative to the app/Ship directory!
+     * Relative path for the custom stubs (relative to the app/Base directory!
      */
     CONST CUSTOM_STUB_PATH = 'Generators/CustomStubs/*';
 
@@ -55,9 +55,9 @@ abstract class GeneratorCommand extends Command
     protected $filePath;
 
     /**
-     * @var string the name of the container to generate the stubs
+     * @var string the name of the package to generate the stubs
      */
-    protected $containerName;
+    protected $packageName;
 
     /**
      * @var string The name of the file to be created (entered by the user)
@@ -90,7 +90,7 @@ abstract class GeneratorCommand extends Command
     private $fileSystem;
 
     private $defaultInputs = [
-        ['container', null, InputOption::VALUE_OPTIONAL, 'The name of the container'],
+        ['package', null, InputOption::VALUE_OPTIONAL, 'The name of the package'],
         ['file', null, InputOption::VALUE_OPTIONAL, 'The name of the file'],
     ];
 
@@ -115,15 +115,15 @@ abstract class GeneratorCommand extends Command
     {
         $this->validateGenerator($this);
 
-        $this->containerName = ucfirst($this->checkParameterOrAsk('container', 'Enter the name of the Container'));
+        $this->packageName = ucfirst($this->checkParameterOrAsk('package', 'Enter the name of the Package'));
         $this->fileName = $this->checkParameterOrAsk('file', 'Enter the name of the ' . $this->fileType . ' file', $this->getDefaultFileName());
 
-        // now fix the container and file name
-        $this->containerName = $this->removeSpecialChars($this->containerName);
+        // now fix the package and file name
+        $this->packageName = $this->removeSpecialChars($this->packageName);
         $this->fileName = $this->removeSpecialChars($this->fileName);
 
         // and we are ready to start
-        $this->printStartedMessage($this->containerName, $this->fileName);
+        $this->printStartedMessage($this->packageName, $this->fileName);
 
         // get user inputs
         $this->userData = $this->getUserInputs();
@@ -191,7 +191,7 @@ abstract class GeneratorCommand extends Command
     protected function getStubContent()
     {
         // check if there is a custom file that overrides the default stubs
-        $path = app_path() . '/Ship/' . self::CUSTOM_STUB_PATH;
+        $path = app_path() . '/Base/' . self::CUSTOM_STUB_PATH;
         $file = str_replace('*', $this->stubName, $path);
 
         // check if the custom file exists

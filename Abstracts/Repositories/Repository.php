@@ -23,8 +23,8 @@ abstract class Repository extends PrettusRepository implements PrettusCacheable
      * This function relies on the convention.
      * Conventions:
      *    - Repository name should be same like it's model name (model: Foo -> repository: FooRepository).
-     *    - If the container contains Models with names different than the container name, the repository class must
-     *          set `$container='ContainerName'` property for this function to work properly
+     *    - If the package contains Models with names different than the package name, the repository class must
+     *          set `$package='ContainerName'` property for this function to work properly
      * Specify Model class name.
      *
      * @return string
@@ -34,8 +34,8 @@ abstract class Repository extends PrettusRepository implements PrettusCacheable
         // 1_ get the full namespace of the child class who's extending this class.
         // 2_ remove the namespace and keep the class name
         // 3_ remove the word Repository from the class name
-        // 4_ check if the container name is set on the repository to indicate that the
-        //    model has different name than the container holding it
+        // 4_ check if the package name is set on the repository to indicate that the
+        //    model has different name than the package holding it
         // 5_ build the namespace of the Model based on the conventions
 
         $fullName = get_called_class();

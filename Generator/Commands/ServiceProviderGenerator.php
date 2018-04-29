@@ -27,7 +27,7 @@ class ServiceProviderGenerator extends GeneratorCommand implements ComponentsGen
      *
      * @var string
      */
-    protected $description = 'Create a ServiceProvider for a Container';
+    protected $description = 'Create a ServiceProvider for a Package';
 
     /**
      * The type of class being generated.
@@ -41,7 +41,7 @@ class ServiceProviderGenerator extends GeneratorCommand implements ComponentsGen
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Providers/*';
+    protected $pathStructure = '{package-name}/Providers/*';
 
     /**
      * The structure of the file name.
@@ -81,11 +81,11 @@ class ServiceProviderGenerator extends GeneratorCommand implements ComponentsGen
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [

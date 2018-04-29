@@ -24,7 +24,7 @@ use Vinkla\Hashids\HashidsServiceProvider;
 /**
  * Class ApiatoProviders
  *
- * Does not have to extend from the Ship parent MainProvider since it's on the Core
+ * Does not have to extend from the Base parent MainProvider since it's on the Core
  * it directly extends from the Abstract MainProvider.
  *
  * @author  Mahmoud Zalt  <mahmoud@zalt.me>
@@ -37,7 +37,7 @@ class ApiatoProvider extends AbstractMainProvider
     use ValidationTrait;
 
     /**
-     * Register any Service Providers on the Ship layer (including third party packages).
+     * Register any Service Providers on the Base layer (including third party packages).
      *
      * @var array
      */
@@ -55,12 +55,12 @@ class ApiatoProvider extends AbstractMainProvider
         // Internal Apiato Providers:
         EventServiceProvider::class, //The custom apiato eventserviceprovider
         RoutesProvider::class, // exceptionally adding the Route Provider, unlike all other providers in the parents.
-        ShipProvider::class, // the ShipProvider for the Ship third party packages.
+        ShipProvider::class, // the ShipProvider for the Base third party packages.
         GeneratorsServiceProvider::class, // the code generator provider.
     ];
 
     /**
-     * Register any Alias on the Ship layer (including third party packages).
+     * Register any Alias on the Base layer (including third party packages).
      *
      * @var  array
      */
@@ -76,7 +76,7 @@ class ApiatoProvider extends AbstractMainProvider
      */
     public function boot()
     {
-        // Autoload most of the Packages and Ship Components
+        // Autoload most of the Packages and Base Components
         $this->runLoadersBoot();
 
         // load all service providers defined in this class

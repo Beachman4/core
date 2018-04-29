@@ -42,9 +42,9 @@ trait SeederLoaderTrait
 
         $packagesDirectories = [];
 
-        foreach (Apiato::getPackagesNames() as $containerName) {
+        foreach (Apiato::getPackagesNames() as $packageName) {
 
-            $packagesDirectories[] = base_path('app/Packages/' . $containerName . $this->seedersPath);
+            $packagesDirectories[] = base_path('app/Packages/' . $packageName . $this->seedersPath);
 
         }
 
@@ -65,7 +65,7 @@ trait SeederLoaderTrait
 //        foreach (Apiato::getShipFoldersNames() as $portFolderName) {
 //
 //            // Need to Loop over that Directory and load the any Seeder file there.
-//            $packagesDirectories[] = base_path('app/Ship/Seeders/Tests');
+//            $packagesDirectories[] = base_path('app/Base/Seeders/Tests');
 //        }
 //
 //        $seedersClasses = $this->findSeedersClasses($packagesDirectories, $seedersClasses);

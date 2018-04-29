@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Packages\{{container-name}}\UI\API\Tests\Functional;
+namespace App\Packages\{{package-name}}\UI\API\Tests\Functional;
 
-use App\Packages\{{container-name}}\Tests\ApiTestCase;
+use App\Packages\{{package-name}}\Tests\ApiTestCase;
 
 /**
  * Class {{class-name}}.
  *
- * @group {{_container-name}}
+ * @group {{_package-name}}
  * @group api
  */
 class {{class-name}} extends ApiTestCase

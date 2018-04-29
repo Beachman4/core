@@ -41,7 +41,7 @@ class EventGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Events/Events/*';
+    protected $pathStructure = '{package-name}/Events/Events/*';
 
     /**
      * The structure of the file name.
@@ -80,7 +80,7 @@ class EventGenerator extends GeneratorCommand implements ComponentsGenerator
             // we need to generate a corresponding handler
             // so call the other command
             $status = $this->call('apiato:generate:eventhandler', [
-                '--container' => $this->containerName,
+                '--package' => $this->packageName,
                 '--file' => $this->fileName . 'Handler',
                 '--event' => $this->fileName
             ]);
@@ -97,11 +97,11 @@ class EventGenerator extends GeneratorCommand implements ComponentsGenerator
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'model' => $model,
             ],

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Packages\{{container-name}}\UI\CLI\Tests\Functional;
+namespace App\Packages\{{package-name}}\UI\CLI\Tests\Functional;
 
-use App\Packages\{{container-name}}\Tests\CliTestCase;
+use App\Packages\{{package-name}}\Tests\CliTestCase;
 
 /**
  * Class {{class-name}}.
  *
- * @group {{_container-name}}
+ * @group {{_package-name}}
  * @group cli
  */
 class {{class-name}} extends CliTestCase

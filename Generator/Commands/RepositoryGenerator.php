@@ -40,7 +40,7 @@ class RepositoryGenerator extends GeneratorCommand implements ComponentsGenerato
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Data/Repositories/*';
+    protected $pathStructure = '{package-name}/Data/Repositories/*';
 
     /**
      * The structure of the file name.
@@ -72,11 +72,11 @@ class RepositoryGenerator extends GeneratorCommand implements ComponentsGenerato
     {
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [

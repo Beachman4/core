@@ -38,7 +38,7 @@ abstract class MiddlewareProvider extends MainProvider
     }
 
     /**
-     * Register anything in the container.
+     * Register anything in the package.
      */
     public function register()
     {

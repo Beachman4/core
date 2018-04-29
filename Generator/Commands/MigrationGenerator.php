@@ -29,7 +29,7 @@ class MigrationGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var string
      */
-    protected $description = 'Create an "empty" migration file for a Container';
+    protected $description = 'Create an "empty" migration file for a Package';
 
     /**
      * The type of class being generated.
@@ -43,7 +43,7 @@ class MigrationGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Data/Migrations/*';
+    protected $pathStructure = '{package-name}/Data/Migrations/*';
 
     /**
      * The structure of the file name.
@@ -76,11 +76,11 @@ class MigrationGenerator extends GeneratorCommand implements ComponentsGenerator
     {
         $tablename = Str::lower($this->checkParameterOrAsk('tablename', 'Enter the name of the database table'));
 
-        // now we need to check, if there already exists a "default migration file" for this container!
+        // now we need to check, if there already exists a "default migration file" for this package!
         // we therefore search for a file that is named "xxxx_xx_xx_xxxxxx_NAME"
         $exists = false;
 
-        $folder = $this->parsePathStructure($this->pathStructure, ['container-name' => $this->containerName]);
+        $folder = $this->parsePathStructure($this->pathStructure, ['package-name' => $this->packageName]);
         $folder = $this->getFilePath($folder);
         $folder = rtrim($folder, $this->parsedFileName . '.' . $this->getDefaultFileExtension());
 
@@ -95,17 +95,17 @@ class MigrationGenerator extends GeneratorCommand implements ComponentsGenerator
         }
 
         if ($exists) {
-            // there exists a basic migration file for this container
+            // there exists a basic migration file for this package
             return null;
         }
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => Str::studly($this->fileName),
                 'table-name' => $tablename
             ],
@@ -123,7 +123,7 @@ class MigrationGenerator extends GeneratorCommand implements ComponentsGenerator
      */
     public function getDefaultFileName()
     {
-        return 'create_' . Str::lower($this->containerName) . '_tables';
+        return 'create_' . Str::lower($this->packageName) . '_tables';
     }
 
     /**

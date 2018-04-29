@@ -21,28 +21,28 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
      *
      * @var string
      */
-    protected $name = 'apiato:generate:container:web';
+    protected $name = 'apiato:generate:package:web';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a Container for apiato from scratch (WEB Part)';
+    protected $description = 'Create a Package for apiato from scratch (WEB Part)';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $fileType = 'Container';
+    protected $fileType = 'Package';
 
     /**
      * The structure of the file path.
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/*';
+    protected $pathStructure = '{package-name}/*';
 
     /**
      * The structure of the file name.
@@ -78,40 +78,40 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
 
         $useTransporters = $this->checkParameterOrConfirm('transporters', 'Would you like to use specific Transporters?', true);
 
-        // containername as inputted and lower
-        $containerName = $this->containerName;
-        $_containerName = Str::lower($this->containerName);
+        // packagename as inputted and lower
+        $packageName = $this->packageName;
+        $_packageName = Str::lower($this->packageName);
 
         // name of the model (singular and plural)
-        $model = $this->containerName;
+        $model = $this->packageName;
         $models = Pluralizer::plural($model);
 
         // add the README file
         $this->printInfoMessage('Generating README File');
         $this->call('apiato:generate:readme', [
-            '--container'   => $containerName,
+            '--package'   => $packageName,
             '--file'        => 'README',
         ]);
 
         // create the configuration file
         $this->printInfoMessage('Generating Configuration File');
         $this->call('apiato:generate:configuration', [
-            '--container'   => $containerName,
-            '--file'        => $_containerName,
+            '--package'   => $packageName,
+            '--file'        => $_packageName,
         ]);
 
-        // create the MainServiceProvider for the container
+        // create the MainServiceProvider for the package
         $this->printInfoMessage('Generating MainServiceProvider');
         $this->call('apiato:generate:serviceprovider', [
-            '--container'   => $containerName,
+            '--package'   => $packageName,
             '--file'        => 'MainServiceProvider',
             '--stub'        => 'mainserviceprovider',
         ]);
 
-        // create the model and repository for this container
+        // create the model and repository for this package
         $this->printInfoMessage('Generating Model and Repository');
         $this->call('apiato:generate:model', [
-            '--container'   => $containerName,
+            '--package'   => $packageName,
             '--file'        => $model,
             '--repository'  => true,
         ]);
@@ -119,12 +119,12 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
         // create the migration file for the model
         $this->printInfoMessage('Generating a basic Migration file');
         $this->call('apiato:generate:migration', [
-            '--container'   => $containerName,
-            '--file'        => 'create_' . Str::lower($_containerName) . '_tables',
+            '--package'   => $packageName,
+            '--file'        => 'create_' . Str::lower($_packageName) . '_tables',
             '--tablename'   => $models,
         ]);
 
-        // create the default routes for this container
+        // create the default routes for this package
         $this->printInfoMessage('Generating Default Routes');
         $version = 1;
         $doctype = 'private';
@@ -220,7 +220,7 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
         foreach ($routes as $route)
         {
             $this->call('apiato:generate:route', [
-                '--container'   => $containerName,
+                '--package'   => $packageName,
                 '--file'        => $route['name'],
                 '--ui'          => $ui,
                 '--operation'   => $route['operation'],
@@ -238,7 +238,7 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
             }
 
             $this->call('apiato:generate:request', [
-                '--container'   => $containerName,
+                '--package'   => $packageName,
                 '--file'        => $route['request'],
                 '--ui'          => $ui,
                 '--transporter' => $enableTransporter,
@@ -247,7 +247,7 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
 
             if ($route['action'] != null || $route['stub'] != null) {
                 $this->call('apiato:generate:action', [
-                    '--container' => $containerName,
+                    '--package' => $packageName,
                     '--file' => $route['action'],
                     '--model' => $model,
                     '--stub' => $route['stub'],
@@ -256,7 +256,7 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
 
             if ($route['task'] != null || $route['stub'] != null) {
                 $this->call('apiato:generate:task', [
-                    '--container' => $containerName,
+                    '--package' => $packageName,
                     '--file' => $route['task'],
                     '--model' => $model,
                     '--stub' => $route['stub'],
@@ -267,7 +267,7 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
         // finally generate the controller
         $this->printInfoMessage('Generating Controller to wire everything together');
         $this->call('apiato:generate:controller', [
-            '--container'   => $containerName,
+            '--package'   => $packageName,
             '--file'        => 'Controller',
             '--ui'          => $ui,
             '--stub'        => 'crud.' . $ui,
@@ -276,11 +276,11 @@ class ContainerWebGenerator extends GeneratorCommand implements ComponentsGenera
         $this->printInfoMessage('Generating Composer File');
         return [
             'path-parameters' => [
-                'container-name' => $containerName,
+                'package-name' => $packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => $_containerName,
-                'container-name' => $containerName,
+                '_package-name' => $_packageName,
+                'package-name' => $packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [

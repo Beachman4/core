@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Models;
+namespace App\Packages\{{package-name}}\Models;
 
 use App\Base\Parents\Models\Model;
 

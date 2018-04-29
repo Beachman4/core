@@ -40,7 +40,7 @@ class EventHandlerGenerator extends GeneratorCommand implements ComponentsGenera
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Events/Handlers/*';
+    protected $pathStructure = '{package-name}/Events/Handlers/*';
 
     /**
      * The structure of the file name.
@@ -77,10 +77,10 @@ class EventHandlerGenerator extends GeneratorCommand implements ComponentsGenera
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'model' => $event,
             ],

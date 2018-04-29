@@ -40,7 +40,7 @@ class SeederGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Data/Seeders/*';
+    protected $pathStructure = '{package-name}/Data/Seeders/*';
 
     /**
      * The structure of the file name.
@@ -72,11 +72,11 @@ class SeederGenerator extends GeneratorCommand implements ComponentsGenerator
     {
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [
@@ -92,7 +92,7 @@ class SeederGenerator extends GeneratorCommand implements ComponentsGenerator
      */
     public function getDefaultFileName()
     {
-        return $this->containerName . 'Seeder';
+        return $this->packageName . 'Seeder';
     }
 
 }

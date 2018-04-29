@@ -20,28 +20,28 @@ class ContainerGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var string
      */
-    protected $name = 'apiato:generate:container';
+    protected $name = 'apiato:generate:package';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a Container for apiato from scratch';
+    protected $description = 'Create a Package for apiato from scratch';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $fileType = 'Container';
+    protected $fileType = 'Package';
 
     /**
      * The structure of the file path.
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/*';
+    protected $pathStructure = '{package-name}/*';
 
     /**
      * The structure of the file name.
@@ -73,25 +73,25 @@ class ContainerGenerator extends GeneratorCommand implements ComponentsGenerator
      */
     public function getUserInputs()
     {
-        $ui = Str::lower($this->checkParameterOrChoice('ui', 'Select the UI for this container', ['API', 'WEB', 'BOTH'], 0));
+        $ui = Str::lower($this->checkParameterOrChoice('ui', 'Select the UI for this package', ['API', 'WEB', 'BOTH'], 0));
 
         $useTransporters = $this->checkParameterOrConfirm('transporters', 'Would you like to use specific Transporters', true);
 
-        // containername as inputted and lower
-        $containerName = $this->containerName;
-        $_containerName = Str::lower($this->containerName);
+        // packagename as inputted and lower
+        $packageName = $this->packageName;
+        $_packageName = Str::lower($this->packageName);
 
         if ($ui == 'api' || $ui == 'both') {
-            $this->call('apiato:generate:container:api', [
-                '--container'    => $containerName,
+            $this->call('apiato:generate:package:api', [
+                '--package'    => $packageName,
                 '--file'         => 'composer',
                 '--transporters' => $useTransporters,
             ]);
         }
 
         if ($ui == 'web' || $ui == 'both') {
-            $this->call('apiato:generate:container:web', [
-                '--container'    => $containerName,
+            $this->call('apiato:generate:package:web', [
+                '--package'    => $packageName,
                 '--file'         => 'composer',
                 '--transporters' => $useTransporters,
             ]);
@@ -100,11 +100,11 @@ class ContainerGenerator extends GeneratorCommand implements ComponentsGenerator
         $this->printInfoMessage('Generating Composer File');
         return [
             'path-parameters' => [
-                'container-name' => $containerName,
+                'package-name' => $packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => $_containerName,
-                'container-name' => $containerName,
+                '_package-name' => $_packageName,
+                'package-name' => $packageName,
                 'class-name' => $this->fileName,
             ],
             'file-parameters' => [

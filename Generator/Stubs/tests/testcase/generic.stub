@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Tests;
+namespace App\Packages\{{package-name}}\Tests;
 
 use App\Base\Parents\Tests\PhpUnit\TestCase as ShipTestCase;
 
 /**
  * Class {{class-name}}.
  *
- * This is the container Main TestCase class. Use this class to add your container specific helper functions.
+ * This is the package Main TestCase class. Use this class to add your package specific helper functions.
  */
 class {{class-name}} extends ShipTestCase
 {

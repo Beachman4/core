@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Providers;
+namespace App\Packages\{{package-name}}\Providers;
 
 use App\Base\Parents\Providers\MainProvider;
 
 /**
  * Class MainServiceProvider.
  *
- * The Main Service Provider of this container, it will be automatically registered in the framework.
+ * The Main Service Provider of this package, it will be automatically registered in the framework.
  */
 class MainServiceProvider extends MainProvider
 {
 
     /**
-     * Container Service Providers.
+     * Package Service Providers.
      *
      * @var array
      */
@@ -22,7 +22,7 @@ class MainServiceProvider extends MainProvider
     ];
 
     /**
-     * Container Aliases
+     * Package Aliases
      *
      * @var  array
      */
@@ -31,7 +31,7 @@ class MainServiceProvider extends MainProvider
     ];
 
     /**
-     * Register anything in the container.
+     * Register anything in the package.
      */
     public function register()
     {

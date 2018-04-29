@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Actions;
+namespace App\Packages\{{package-name}}\Actions;
 
 use App\Base\Parents\Actions\Action;
 use App\Base\Parents\Requests\Request;
@@ -10,7 +10,7 @@ class GetAll{{models}}Action extends Action
 {
     public function run(Request $request)
     {
-        ${{entities}} = Apiato::call('{{container-name}}@GetAll{{models}}Task', [], ['addRequestCriteria']);
+        ${{entities}} = Apiato::call('{{package-name}}@GetAll{{models}}Task', [], ['addRequestCriteria']);
 
         return ${{entities}};
     }

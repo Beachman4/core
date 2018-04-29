@@ -40,7 +40,7 @@ class TestUnitTestGenerator extends GeneratorCommand implements ComponentsGenera
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Tests/Unit/*';
+    protected $pathStructure = '{package-name}/Tests/Unit/*';
 
     /**
      * The structure of the file name.
@@ -72,18 +72,18 @@ class TestUnitTestGenerator extends GeneratorCommand implements ComponentsGenera
     {
         // we need to generate the TestCase class before
         $this->call('apiato:generate:test:testcase', [
-            '--container' => $this->containerName,
+            '--package' => $this->packageName,
             '--file' => 'TestCase',
             '--ui' => 'generic',
         ]);
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name'  => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name'  => $this->packageName,
                 'class-name'      => $this->fileName,
             ],
             'file-parameters' => [

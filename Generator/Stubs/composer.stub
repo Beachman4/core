@@ -1,6 +1,6 @@
 {
-  "name": "apiato/{{_container-name}}",
-  "description": "{{container-name}} Container for apiato.",
+  "name": "apiato/{{_package-name}}",
+  "description": "{{package-name}} Package for apiato.",
   "require": {
   }
 }

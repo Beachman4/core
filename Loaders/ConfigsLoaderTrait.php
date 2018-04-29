@@ -13,13 +13,13 @@ trait ConfigsLoaderTrait
 {
 
     /**
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadConfigsFromPackages($containerName)
+    public function loadConfigsFromPackages($packageName)
     {
-        $containerConfigsDirectory = base_path('app/Packages/' . $containerName . '/Configs');
+        $packageConfigsDirectory = base_path('app/Packages/' . $packageName . '/Configs');
 
-        $this->loadConfigs($containerConfigsDirectory);
+        $this->loadConfigs($packageConfigsDirectory);
     }
 
     /**
@@ -27,7 +27,7 @@ trait ConfigsLoaderTrait
      */
     public function loadConfigsFromShip()
     {
-        $portConfigsDirectory = base_path('app/Ship/Configs');
+        $portConfigsDirectory = base_path('app/Base/Configs');
 
         $this->loadConfigs($portConfigsDirectory);
     }

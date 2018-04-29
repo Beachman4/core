@@ -41,7 +41,7 @@ class MailGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Mails/*';
+    protected $pathStructure = '{package-name}/Mails/*';
 
     /**
      * The structure of the file name.
@@ -76,11 +76,11 @@ class MailGenerator extends GeneratorCommand implements ComponentsGenerator
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name'  => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name'  => $this->packageName,
                 'class-name'      => $this->fileName,
                 'view'            => $view,
             ],

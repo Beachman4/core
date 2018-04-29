@@ -5,9 +5,9 @@ namespace Apiato\Core\Generator\Traits;
 trait PrinterTrait
 {
 
-    public function printStartedMessage($containerName, $fileName)
+    public function printStartedMessage($packageName, $fileName)
     {
-        $this->printInfoMessage('> Generating (' . $fileName . ') in (' . $containerName . ') Container.');
+        $this->printInfoMessage('> Generating (' . $fileName . ') in (' . $packageName . ') Package.');
     }
 
     /**

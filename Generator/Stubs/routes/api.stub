@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @apiGroup           {{container-name}}
+ * @apiGroup           {{package-name}}
  * @apiName            {{operation}}
  *
  * @api                {{{doc-http-verb}}} {{doc-endpoint-url}} Endpoint title here..

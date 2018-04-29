@@ -28,7 +28,7 @@ class ControllerGenerator extends GeneratorCommand implements ComponentsGenerato
      *
      * @var string
      */
-    protected $description = 'Create a controller for a container';
+    protected $description = 'Create a controller for a package';
 
     /**
      * The type of class being generated.
@@ -42,7 +42,7 @@ class ControllerGenerator extends GeneratorCommand implements ComponentsGenerato
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/UI/{user-interface}/Controllers/*';
+    protected $pathStructure = '{package-name}/UI/{user-interface}/Controllers/*';
 
     /**
      * The structure of the file name.
@@ -60,7 +60,7 @@ class ControllerGenerator extends GeneratorCommand implements ComponentsGenerato
 
     /**
      * The options which can be passed to the command. All options are optional. You do not need to pass the
-     * "--container" and "--file" options, as they are globally handled. Just use the options which are specific to
+     * "--package" and "--file" options, as they are globally handled. Just use the options which are specific to
      * this generator.
      *
      * @var  array
@@ -90,7 +90,7 @@ class ControllerGenerator extends GeneratorCommand implements ComponentsGenerato
         $basecontroller = Str::ucfirst($ui) . 'Controller';
 
         // name of the model (singular and plural)
-        $model = $this->containerName;
+        $model = $this->packageName;
         $models = Pluralizer::plural($model);
 
         $entity = Str::lower($model);
@@ -98,12 +98,12 @@ class ControllerGenerator extends GeneratorCommand implements ComponentsGenerato
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
                 'user-interface' => Str::upper($ui),
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'user-interface' => Str::upper($ui),
                 'base-controller' => $basecontroller,

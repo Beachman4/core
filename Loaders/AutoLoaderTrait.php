@@ -33,13 +33,13 @@ trait AutoLoaderTrait
         $this->loadConsolesFromShip();
 
         // > iterate over all the packages folders and autoload most of the components
-        foreach (Apiato::getPackagesNames() as $containerName) {
-            $this->loadConfigsFromPackages($containerName);
-            $this->loadLocalsFromPackages($containerName);
-            $this->loadOnlyMainProvidersFromPackages($containerName);
-            $this->loadMigrationsFromPackages($containerName);
-            $this->loadConsolesFromPackages($containerName);
-            $this->loadViewsFromPackages($containerName);
+        foreach (Apiato::getPackagesNames() as $packageName) {
+            $this->loadConfigsFromPackages($packageName);
+            $this->loadLocalsFromPackages($packageName);
+            $this->loadOnlyMainProvidersFromPackages($packageName);
+            $this->loadMigrationsFromPackages($packageName);
+            $this->loadConsolesFromPackages($packageName);
+            $this->loadViewsFromPackages($packageName);
         }
 
         $this->loadFactoriesFromPackages();

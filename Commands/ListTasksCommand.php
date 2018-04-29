@@ -46,11 +46,11 @@ class ListTasksCommand extends ConsoleCommand
      */
     public function handle()
     {
-        foreach (Apiato::getPackagesNames() as $containerName) {
+        foreach (Apiato::getPackagesNames() as $packageName) {
 
-            $this->console->writeln("<fg=yellow> [$containerName]</fg=yellow>");
+            $this->console->writeln("<fg=yellow> [$packageName]</fg=yellow>");
 
-            $directory = base_path('app/Packages/' . $containerName . '/Tasks');
+            $directory = base_path('app/Packages/' . $packageName . '/Tasks');
 
             if (File::isDirectory($directory)) {
 

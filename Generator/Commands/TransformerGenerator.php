@@ -42,7 +42,7 @@ class TransformerGenerator extends GeneratorCommand implements ComponentsGenerat
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/UI/API/Transformers/*';
+    protected $pathStructure = '{package-name}/UI/API/Transformers/*';
 
     /**
      * The structure of the file name.
@@ -81,11 +81,11 @@ class TransformerGenerator extends GeneratorCommand implements ComponentsGenerat
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'model' => $model,
                 'attributes' => $attributes,
@@ -103,7 +103,7 @@ class TransformerGenerator extends GeneratorCommand implements ComponentsGenerat
         ];
 
         if($full) {
-            $obj = 'App\\Packages\\' . $this->containerName . '\\Models\\' . $model;
+            $obj = 'App\\Packages\\' . $this->packageName . '\\Models\\' . $model;
             $obj = new $obj();
             $columns = Schema::getColumnListing($obj->getTable());
 

@@ -28,7 +28,7 @@ class ActionGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var string
      */
-    protected $description = 'Create a Action file for a Container';
+    protected $description = 'Create a Action file for a Package';
 
     /**
      * The type of class being generated.
@@ -42,7 +42,7 @@ class ActionGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Actions/*';
+    protected $pathStructure = '{package-name}/Actions/*';
 
     /**
      * The structure of the file name.
@@ -74,7 +74,7 @@ class ActionGenerator extends GeneratorCommand implements ComponentsGenerator
      */
     public function getUserInputs()
     {
-        $model = $this->checkParameterOrAsk('model', 'Enter the name of the model this action is for.', $this->containerName);
+        $model = $this->checkParameterOrAsk('model', 'Enter the name of the model this action is for.', $this->packageName);
         $stub = Str::lower($this->checkParameterOrChoice(
             'stub',
             'Select the Stub you want to load',
@@ -92,11 +92,11 @@ class ActionGenerator extends GeneratorCommand implements ComponentsGenerator
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'model' => $model,
                 'models' => $models,

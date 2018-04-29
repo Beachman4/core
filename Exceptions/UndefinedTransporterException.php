@@ -15,6 +15,6 @@ class UndefinedTransporterException extends Exception
 
     public $httpStatusCode = SymfonyResponse::HTTP_INTERNAL_SERVER_ERROR;
 
-    public $message = 'Default Transporter for Request not defined. Please override $transporter in Ship\Parents\Request\Request.';
+    public $message = 'Default Transporter for Request not defined. Please override $transporter in Base\Parents\Request\Request.';
 
 }

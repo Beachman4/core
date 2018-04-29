@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Events\Handlers;
+namespace App\Packages\{{package-name}}\Events\Handlers;
 
-use App\Packages\{{container-name}}\Events\Events\{{model}};
+use App\Packages\{{package-name}}\Events\Events\{{model}};
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 /**
@@ -16,7 +16,7 @@ class {{class-name}} implements ShouldQueue
     }
 
     /**
-     * @param \App\Packages\{{container-name}}\Events\Events\{{model}} $event
+     * @param \App\Packages\{{package-name}}\Events\Events\{{model}} $event
      */
     public function handle({{model}} $event)
     {

@@ -41,7 +41,7 @@ class RouteGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/UI/{user-interface}/Routes/*';
+    protected $pathStructure = '{package-name}/UI/{user-interface}/Routes/*';
 
     /**
      * The structure of the file name.
@@ -88,19 +88,19 @@ class RouteGenerator extends GeneratorCommand implements ComponentsGenerator
 
         $docurl = preg_replace('~\{(.+?)\}~', ':$1', $url);
 
-        $routename = Str::lower($ui . '_' . $this->containerName . '_' . Str::snake($operation));
+        $routename = Str::lower($ui . '_' . $this->packageName . '_' . Str::snake($operation));
 
         // change the stub to the currently selected UI (API / WEB)
         $this->stubName = 'routes/' . $ui . '.stub';
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
                 'user-interface' => Str::upper($ui),
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'operation' => $operation,
                 'user-interface' => Str::upper($ui),
                 'endpoint-url' => $url,

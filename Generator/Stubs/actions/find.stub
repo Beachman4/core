@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Actions;
+namespace App\Packages\{{package-name}}\Actions;
 
 use App\Base\Parents\Actions\Action;
 use App\Base\Parents\Requests\Request;
@@ -10,7 +10,7 @@ class Find{{model}}ByIdAction extends Action
 {
     public function run(Request $request)
     {
-        ${{entity}} = Apiato::call('{{container-name}}@Find{{model}}ByIdTask', [$request->id]);
+        ${{entity}} = Apiato::call('{{package-name}}@Find{{model}}ByIdTask', [$request->id]);
 
         return ${{entity}};
     }

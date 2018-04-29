@@ -14,13 +14,13 @@ trait MigrationsLoaderTrait
 {
 
     /**
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadMigrationsFromPackages($containerName)
+    public function loadMigrationsFromPackages($packageName)
     {
-        $containerMigrationDirectory = base_path('app/Packages/' . $containerName . '/Data/Migrations');
+        $packageMigrationDirectory = base_path('app/Packages/' . $packageName . '/Data/Migrations');
 
-        $this->loadMigrations($containerMigrationDirectory);
+        $this->loadMigrations($packageMigrationDirectory);
     }
 
     /**
@@ -28,7 +28,7 @@ trait MigrationsLoaderTrait
      */
     public function loadMigrationsFromShip()
     {
-        $portMigrationDirectory = base_path('app/Ship/Migrations');
+        $portMigrationDirectory = base_path('app/Base/Migrations');
 
         $this->loadMigrations($portMigrationDirectory);
     }

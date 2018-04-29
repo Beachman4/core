@@ -42,7 +42,7 @@ class ModelGenerator extends GeneratorCommand implements ComponentsGenerator
      *
      * @var  string
      */
-    protected $pathStructure = '{container-name}/Models/*';
+    protected $pathStructure = '{package-name}/Models/*';
 
     /**
      * The structure of the file name.
@@ -78,7 +78,7 @@ class ModelGenerator extends GeneratorCommand implements ComponentsGenerator
             // we need to generate a corresponding repository
             // so call the other command
             $status = $this->call('apiato:generate:repository', [
-                '--container' => $this->containerName,
+                '--package' => $this->packageName,
                 '--file' => $this->fileName . 'Repository'
             ]);
 
@@ -92,11 +92,11 @@ class ModelGenerator extends GeneratorCommand implements ComponentsGenerator
 
         return [
             'path-parameters' => [
-                'container-name' => $this->containerName,
+                'package-name' => $this->packageName,
             ],
             'stub-parameters' => [
-                '_container-name' => Str::lower($this->containerName),
-                'container-name' => $this->containerName,
+                '_package-name' => Str::lower($this->packageName),
+                'package-name' => $this->packageName,
                 'class-name' => $this->fileName,
                 'resource-key' => strtolower(Pluralizer::plural($this->fileName)),
             ],

@@ -20,13 +20,13 @@ trait ProvidersLoaderTrait
      * loaded from the `boot()` function on the parent of the Main
      * Service Providers.
      *
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadOnlyMainProvidersFromPackages($containerName)
+    public function loadOnlyMainProvidersFromPackages($packageName)
     {
-        $containerProvidersDirectory = base_path('app/Packages/' . $containerName . '/Providers');
+        $packageProvidersDirectory = base_path('app/Packages/' . $packageName . '/Providers');
 
-        $this->loadProviders($containerProvidersDirectory);
+        $this->loadProviders($packageProvidersDirectory);
     }
 
     /**

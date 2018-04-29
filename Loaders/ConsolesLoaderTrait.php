@@ -14,13 +14,13 @@ trait ConsolesLoaderTrait
 {
 
     /**
-     * @param $containerName
+     * @param $packageName
      */
-    public function loadConsolesFromPackages($containerName)
+    public function loadConsolesFromPackages($packageName)
     {
-        $containerCommandsDirectory = base_path('app/Packages/' . $containerName . '/UI/CLI/Commands');
+        $packageCommandsDirectory = base_path('app/Packages/' . $packageName . '/UI/CLI/Commands');
 
-        $this->loadTheConsoles($containerCommandsDirectory);
+        $this->loadTheConsoles($packageCommandsDirectory);
     }
 
     /**
@@ -30,7 +30,7 @@ trait ConsolesLoaderTrait
     {
         $commandsFoldersPaths = [
             // ship commands
-            base_path('app/Ship/Commands'),
+            base_path('app/Base/Commands'),
             // core commands
             __DIR__ . '/../Commands'
         ];

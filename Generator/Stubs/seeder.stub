@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Data\Seeders;
+namespace App\Packages\{{package-name}}\Data\Seeders;
 
 use App\Base\Parents\Seeders\Seeder;
 

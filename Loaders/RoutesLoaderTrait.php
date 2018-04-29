@@ -24,24 +24,24 @@ trait RoutesLoaderTrait
         $packagesPaths = Apiato::getPackagesPaths();
         $packagesNamespace = Apiato::getPackagesNamespace();
 
-        foreach ($packagesPaths as $containerPath) {
-            $this->loadApiContainerRoutes($containerPath, $packagesNamespace);
-            $this->loadWebContainerRoutes($containerPath, $packagesNamespace);
+        foreach ($packagesPaths as $packagePath) {
+            $this->loadApiContainerRoutes($packagePath, $packagesNamespace);
+            $this->loadWebContainerRoutes($packagePath, $packagesNamespace);
         }
     }
 
     /**
      * Register the Packages API routes files
      *
-     * @param $containerPath
+     * @param $packagePath
      * @param $packagesNamespace
      */
-    private function loadApiContainerRoutes($containerPath, $packagesNamespace)
+    private function loadApiContainerRoutes($packagePath, $packagesNamespace)
     {
-        // build the container api routes path
-        $apiRoutesPath = $containerPath . '/UI/API/Routes';
+        // build the package api routes path
+        $apiRoutesPath = $packagePath . '/UI/API/Routes';
         // build the namespace from the path
-        $controllerNamespace = $packagesNamespace . '\\Packages\\' . basename($containerPath) . '\\UI\API\Controllers';
+        $controllerNamespace = $packagesNamespace . '\\Packages\\' . basename($packagePath) . '\\UI\API\Controllers';
 
         if (File::isDirectory($apiRoutesPath)) {
             $files = File::allFiles($apiRoutesPath);
@@ -57,15 +57,15 @@ trait RoutesLoaderTrait
     /**
      * Register the Packages WEB routes files
      *
-     * @param $containerPath
+     * @param $packagePath
      * @param $packagesNamespace
      */
-    private function loadWebContainerRoutes($containerPath, $packagesNamespace)
+    private function loadWebContainerRoutes($packagePath, $packagesNamespace)
     {
-        // build the container web routes path
-        $webRoutesPath = $containerPath . '/UI/WEB/Routes';
+        // build the package web routes path
+        $webRoutesPath = $packagePath . '/UI/WEB/Routes';
         // build the namespace from the path
-        $controllerNamespace = $packagesNamespace . '\\Packages\\' . basename($containerPath) . '\\UI\WEB\Controllers';
+        $controllerNamespace = $packagesNamespace . '\\Packages\\' . basename($packagePath) . '\\UI\WEB\Controllers';
 
         if (File::isDirectory($webRoutesPath)) {
             $files = File::allFiles($webRoutesPath);

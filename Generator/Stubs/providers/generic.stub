@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Packages\{{container-name}}\Providers;
+namespace App\Packages\{{package-name}}\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  * Class {{class-name]].
  *
- * A custom Service Provider - remember to register the latter in the MainServiceProvider of this Container.
+ * A custom Service Provider - remember to register the latter in the MainServiceProvider of this Package.
  */
 class {{class-name}} extends ServiceProvider
 {
 
     /**
-     * Register anything in the container.
+     * Register anything in the package.
      */
     public function register()
     {
