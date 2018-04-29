@@ -4,25 +4,25 @@
  * This files acts as the single factory php file of all the application.
  * Inside this file I am including every factory file found int he application.
  *
- * This currently only load factories from containers not form the port as it's not necessary yet!
+ * This currently only load factories from packages not form the port as it's not necessary yet!
  */
 
 use Apiato\Core\Foundation\Facades\Apiato;
 
 // Default seeders directory in the container
-$containersFactoriesPath = '/Data/Factories/';
+$packagesFactoriesPath = '/Data/Factories/';
 
-// Automatically include Factory Files from all Containers to this file,
+// Automatically include Factory Files from all Packages to this file,
 // which will be used by Laravel when dealing with Model Factories.
 
 // Checkout the FactoriesLoaderTrait.php trait, to get an idea on how this works.
-foreach (Apiato::getContainersNames() as $containerName) {
+foreach (Apiato::getPackagesNames() as $containerName) {
 
-    $containersDirectory = base_path('app/Containers/' . $containerName . $containersFactoriesPath);
+    $packagesDirectory = base_path('app/Packages/' . $containerName . $packagesFactoriesPath);
 
-    if (\File::isDirectory($containersDirectory)) {
+    if (\File::isDirectory($packagesDirectory)) {
 
-        $files = \File::allFiles($containersDirectory);
+        $files = \File::allFiles($packagesDirectory);
 
         foreach ($files as $factoryFile) {
 

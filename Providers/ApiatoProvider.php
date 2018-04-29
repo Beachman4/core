@@ -76,7 +76,7 @@ class ApiatoProvider extends AbstractMainProvider
      */
     public function boot()
     {
-        // Autoload most of the Containers and Ship Components
+        // Autoload most of the Packages and Ship Components
         $this->runLoadersBoot();
 
         // load all service providers defined in this class

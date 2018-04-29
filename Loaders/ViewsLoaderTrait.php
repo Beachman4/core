@@ -15,10 +15,10 @@ trait ViewsLoaderTrait
     /**
      * @param $containerName
      */
-    public function loadViewsFromContainers($containerName)
+    public function loadViewsFromPackages($containerName)
     {
-        $containerViewDirectory = base_path('app/Containers/' . $containerName . '/UI/WEB/Views/');
-        $containerMailTemplatesDirectory = base_path('app/Containers/' . $containerName . '/Mails/Templates/');
+        $containerViewDirectory = base_path('app/Packages/' . $containerName . '/UI/WEB/Views/');
+        $containerMailTemplatesDirectory = base_path('app/Packages/' . $containerName . '/Mails/Templates/');
 
         $this->loadViews($containerViewDirectory, $containerName);
         $this->loadViews($containerMailTemplatesDirectory, $containerName);

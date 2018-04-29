@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 /**
  * Class Apiato
  *
- * Helper Class to serve Apiato (Ship/Containers).
+ * Helper Class to serve Apiato (Ship/Packages).
  *
  * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
@@ -22,29 +22,29 @@ class Apiato
     use CallableTrait;
 
     /**
-     * Get the containers namespace value from the containers config file
+     * Get the packages namespace value from the packages config file
      *
      * @return  string
      */
-    public function getContainersNamespace()
+    public function getPackagesNamespace()
     {
         return Config::get('apiato.containers.namespace');
     }
 
     /**
-     * Get the containers names
+     * Get the packages names
      *
      * @return  array
      */
-    public function getContainersNames()
+    public function getPackagesNames()
     {
-        $containersNames = [];
+        $packagesNames = [];
 
-        foreach ($this->getContainersPaths() as $containersPath) {
-            $containersNames[] = basename($containersPath);
+        foreach ($this->getPackagesPaths() as $packagesPath) {
+            $packagesNames[] = basename($packagesPath);
         }
 
-        return $containersNames;
+        return $packagesNames;
     }
 
     /**
@@ -64,13 +64,13 @@ class Apiato
     }
 
     /**
-     * get containers directories paths
+     * get packages directories paths
      *
      * @return  mixed
      */
-    public function getContainersPaths()
+    public function getPackagesPaths()
     {
-        return File::directories(app_path('Containers'));
+        return File::directories(app_path('Packages'));
     }
 
     /**
@@ -231,7 +231,7 @@ class Apiato
      */
     public function buildClassFullName($containerName, $className)
     {
-        return 'App\Containers\\' . $containerName . '\\' . $this->getClassType($className) . 's\\' . $className;
+        return 'App\Packages\\' . $containerName . '\\' . $this->getClassType($className) . 's\\' . $className;
     }
 
     /**
@@ -256,7 +256,7 @@ class Apiato
      */
     public function verifyContainerExist($containerName)
     {
-        if (!is_dir(app_path('Containers/' . $containerName))) {
+        if (!is_dir(app_path('Packages/' . $containerName))) {
             throw new MissingContainerException("Container ($containerName) is not installed.");
         }
     }

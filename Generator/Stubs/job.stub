@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Jobs;
+namespace App\Packages\{{container-name}}\Jobs;
 
 use App\Base\Parents\Jobs\Job;
 

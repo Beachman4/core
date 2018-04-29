@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\{{container-name}}\UI\{{user-interface}}\Requests;
+namespace App\Packages\{{container-name}}\UI\{{user-interface}}\Requests;
 
 use App\Base\Parents\Requests\Request;
 

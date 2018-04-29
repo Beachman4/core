@@ -16,9 +16,9 @@ trait ConsolesLoaderTrait
     /**
      * @param $containerName
      */
-    public function loadConsolesFromContainers($containerName)
+    public function loadConsolesFromPackages($containerName)
     {
-        $containerCommandsDirectory = base_path('app/Containers/' . $containerName . '/UI/CLI/Commands');
+        $containerCommandsDirectory = base_path('app/Packages/' . $containerName . '/UI/CLI/Commands');
 
         $this->loadTheConsoles($containerCommandsDirectory);
     }

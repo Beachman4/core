@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Data\Repositories;
+namespace App\Packages\{{container-name}}\Data\Repositories;
 
 use App\Base\Parents\Repositories\Repository;
 

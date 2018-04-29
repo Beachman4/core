@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Tasks;
+namespace App\Packages\{{container-name}}\Tasks;
 
 use App\Base\Parents\Tasks\Task;
 

@@ -24,7 +24,7 @@ abstract class GeneratorCommand extends Command
     use ParserTrait, PrinterTrait, FileSystemTrait, FormatterTrait;
 
     /**
-     * Root directory of all containers
+     * Root directory of all packages
      *
      * @var string
      */
@@ -43,11 +43,11 @@ abstract class GeneratorCommand extends Command
     CONST CUSTOM_STUB_PATH = 'Generators/CustomStubs/*';
 
     /**
-     * Containers main folder
+     * Packages main folder
      *
      * @var string
      */
-    CONST CONTAINER_DIRECTORY_NAME = 'Containers';
+    CONST CONTAINER_DIRECTORY_NAME = 'Packages';
 
     /**
      * @var string

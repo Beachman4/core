@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Events\Events;
+namespace App\Packages\{{container-name}}\Events\Events;
 
 use App\Base\Parents\Events\Event;
 use Illuminate\Queue\SerializesModels;
@@ -13,7 +13,7 @@ class {{class-name}} extends Event
     use SerializesModels;
 
     /**
-     * @var \App\Containers\{{container-name}}\Models\{{model}}
+     * @var \App\Packages\{{container-name}}\Models\{{model}}
      */
     public $entity;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Tests\Unit;
+namespace App\Packages\{{container-name}}\Tests\Unit;
 
-use App\Containers\{{container-name}}\Tests\TestCase;
+use App\Packages\{{container-name}}\Tests\TestCase;
 
 /**
  * Class {{class-name}}.

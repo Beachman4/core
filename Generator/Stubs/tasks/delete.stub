@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Containers\{{container-name}}\Tasks;
+namespace App\Packages\{{container-name}}\Tasks;
 
-use App\Containers\{{container-name}}\Data\Repositories\{{model}}Repository;
+use App\Packages\{{container-name}}\Data\Repositories\{{model}}Repository;
 use App\Base\Exceptions\DeleteResourceFailedException;
 use App\Base\Parents\Tasks\Task;
 use Exception;

@@ -103,7 +103,7 @@ class TransformerGenerator extends GeneratorCommand implements ComponentsGenerat
         ];
 
         if($full) {
-            $obj = 'App\\Containers\\' . $this->containerName . '\\Models\\' . $model;
+            $obj = 'App\\Packages\\' . $this->containerName . '\\Models\\' . $model;
             $obj = new $obj();
             $columns = Schema::getColumnListing($obj->getTable());
 

@@ -3,8 +3,8 @@
 namespace Apiato\Core\Traits\TestsTraits\PhpUnit;
 
 use App;
-use App\Containers\Authentication\Tasks\ApiLoginThisUserObjectTask;
-use App\Containers\User\Models\User;
+use App\Packages\Authentication\Tasks\ApiLoginThisUserObjectTask;
+use App\Packages\User\Models\User;
 use Artisan;
 use Illuminate\Support\Facades\Hash;
 
@@ -47,7 +47,7 @@ trait TestsAuthHelperTrait
      * @param null $access      roles and permissions you'd like to provide this user with
      * @param null $userDetails what to be attached on the User object
      *
-     * @return  \App\Containers\User\Models\User
+     * @return  \App\Packages\User\Models\User
      */
     public function getTestingUser($userDetails = null, $access = null)
     {
@@ -62,7 +62,7 @@ trait TestsAuthHelperTrait
      *
      * @param null $userDetails
      *
-     * @return  \App\Containers\User\Models\User
+     * @return  \App\Packages\User\Models\User
      */
     public function getTestingUserWithoutAccess($userDetails = null)
     {
@@ -73,7 +73,7 @@ trait TestsAuthHelperTrait
      * @param $userDetails
      * @param $access
      *
-     * @return  \App\Containers\User\Models\User
+     * @return  \App\Packages\User\Models\User
      */
     private function findOrCreateTestingUser($userDetails, $access)
     {

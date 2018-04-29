@@ -16,9 +16,9 @@ trait MigrationsLoaderTrait
     /**
      * @param $containerName
      */
-    public function loadMigrationsFromContainers($containerName)
+    public function loadMigrationsFromPackages($containerName)
     {
-        $containerMigrationDirectory = base_path('app/Containers/' . $containerName . '/Data/Migrations');
+        $containerMigrationDirectory = base_path('app/Packages/' . $containerName . '/Data/Migrations');
 
         $this->loadMigrations($containerMigrationDirectory);
     }

@@ -15,9 +15,9 @@ trait ConfigsLoaderTrait
     /**
      * @param $containerName
      */
-    public function loadConfigsFromContainers($containerName)
+    public function loadConfigsFromPackages($containerName)
     {
-        $containerConfigsDirectory = base_path('app/Containers/' . $containerName . '/Configs');
+        $containerConfigsDirectory = base_path('app/Packages/' . $containerName . '/Configs');
 
         $this->loadConfigs($containerConfigsDirectory);
     }

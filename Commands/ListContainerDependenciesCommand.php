@@ -24,7 +24,7 @@ class ListContainerDependenciesCommand extends ConsoleCommand
 
     protected $signature = 'apiato:list:dependencies {containerPath}';
 
-    protected $description = 'Lists all dependencies from the given container to other containers.';
+    protected $description = 'Lists all dependencies from the given container to other packages.';
 
     public function __construct()
     {
@@ -105,7 +105,7 @@ class ListContainerDependenciesCommand extends ConsoleCommand
      */
     private function getComposerInformation($containerName)
     {
-        $composerFile = 'app/Containers/' . $containerName . '/composer.json';
+        $composerFile = 'app/Packages/' . $containerName . '/composer.json';
 
         try {
             $content = file_get_contents($composerFile);
@@ -120,47 +120,47 @@ class ListContainerDependenciesCommand extends ConsoleCommand
     }
 
     /**
-     * Extracts the content of a file  and find all containers by finding all containers in App\Containers\$containerName\*
+     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$containerName\*
      *
      * @param $filePath string - path to the file
-     * @return null | array of containers
+     * @return null | array of packages
      */
     private function getContainerFromUseStatement($filePath)
     {
         $content = file_get_contents($filePath);
 
         // is the containername alphanumeric?
-        preg_match_all('/use App\\\\Containers\\\\(?P<containers>[a-zA-Z\d]*)\\\\/', $content, $matches);
+        preg_match_all('/use App\\\\Packages\\\\(?P<packages>[a-zA-Z\d]*)\\\\/', $content, $matches);
         $ret = [];
 
-        if (isset($matches['containers'])) {
-            $ret['containers'] = array_unique($matches['containers']);
+        if (isset($matches['packages'])) {
+            $ret['packages'] = array_unique($matches['packages']);
         }
 
         return $ret;
     }
 
     /**
-     * Extracts the content of a file  and find all containers by finding all containers in App\Containers\$containerName\*
+     * Extracts the content of a file  and find all packages by finding all packages in App\Packages\$containerName\*
      *
      * @param $filePath string - path to the file
-     * @return null | array of containers
+     * @return null | array of packages
      */
     private function getContainerFromApiatoCall($filePath)
     {
         $content = file_get_contents($filePath);
         //ignores everything that doesnt begin with spaces or tabs.
-        //group 1: ignore lines that start with '//' or '/*', preg match into containers
-        //group 2: get containers
+        //group 1: ignore lines that start with '//' or '/*', preg match into packages
+        //group 2: get packages
         //group 3: parse functions (starting with one letter followed by alphanumeric letters
         //group 4: arguments inside of the square brackets
         //Examples @ http://www.phpliveregex.com/p/m8p
-        $pattern = "/^([^\/\/]*|[^\/\*]*)Apiato::call\('(?P<containers>.*?)@([?P<functions>a-zA-Z][a-zA-Z\d]*?)',.*?\[(?P<args>.*?)]/m";
+        $pattern = "/^([^\/\/]*|[^\/\*]*)Apiato::call\('(?P<packages>.*?)@([?P<functions>a-zA-Z][a-zA-Z\d]*?)',.*?\[(?P<args>.*?)]/m";
         preg_match_all($pattern, $content, $matches);
         $ret = [];
 
-        if (isset($matches['containers'])) {
-            $ret['containers'] = array_unique($matches['containers']);
+        if (isset($matches['packages'])) {
+            $ret['packages'] = array_unique($matches['packages']);
         }
         //todo: add functions and arguments if needed currently unsupported. They are stored in the group 'functions' and 'args'.
         return $ret;
@@ -168,18 +168,18 @@ class ListContainerDependenciesCommand extends ConsoleCommand
 
     /**
      * Iterates through the given path recursively to obtain
-     *  1) all used containers of the given container
-     *  2) an array that contains the containers as keys and all files using it as value.
+     *  1) all used packages of the given container
+     *  2) an array that contains the packages as keys and all files using it as value.
      *
      * @param      $path - to the container
      * @param bool $filterOwnContainer
      *
-     * @return array - [$usedContainers, $filesInContainers]
+     * @return array - [$usedPackages, $filesInPackages]
      * @throws InvalidPathException
      */
     private function getDependencies($path, $filterOwnContainer = false)
     {
-        $ownContainerName = explode('/', explode('app/Containers/', $path)[1])[0];
+        $ownContainerName = explode('/', explode('app/Packages/', $path)[1])[0];
 
         if (!file_exists($path)) {
             throw new InvalidPathException('Given path does not exist: path=' . $path);
@@ -187,36 +187,36 @@ class ListContainerDependenciesCommand extends ConsoleCommand
 
         $recursiveIteratorIterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
         $useStatements = [];
-        $filesInContainers = [];
+        $filesInPackages = [];
 
         foreach ($recursiveIteratorIterator as $file) {
             if (!$file->isDir()) {
                 $apiatoCalls = $this->getContainerFromApiatoCall($file->getPathName());
                 $imports = $this->getContainerFromUseStatement($file->getPathName());
 
-                if (isset($apiatoCalls['containers'])) {
+                if (isset($apiatoCalls['packages'])) {
                     if ($filterOwnContainer) {
-                        $apiatoCalls['containers'] = array_diff($apiatoCalls['containers'], [$ownContainerName]);
+                        $apiatoCalls['packages'] = array_diff($apiatoCalls['packages'], [$ownContainerName]);
                     }
 
-                    foreach ($apiatoCalls['containers'] as $container) {
-                        $filesInContainers['apiatoCalls'][$container][] = $file->getPathName();
+                    foreach ($apiatoCalls['packages'] as $container) {
+                        $filesInPackages['apiatoCalls'][$container][] = $file->getPathName();
                     }
                 }
 
-                if (isset($imports['containers'])) {
+                if (isset($imports['packages'])) {
                     if ($filterOwnContainer) {
-                        $imports['containers'] = array_diff($imports['containers'], [$ownContainerName]);
+                        $imports['packages'] = array_diff($imports['packages'], [$ownContainerName]);
                     }
 
-                    foreach ($imports['containers'] as $container) {
-                        $filesInContainers['imports'][$container][] = $file->getPathName();
+                    foreach ($imports['packages'] as $container) {
+                        $filesInPackages['imports'][$container][] = $file->getPathName();
                     }
                 }
             }
         }
 
-        return $filesInContainers;
+        return $filesInPackages;
     }
 
 }

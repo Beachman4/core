@@ -18,7 +18,7 @@ trait SeederLoaderTrait
 {
 
     /**
-     * Default seeders directory for containers and port
+     * Default seeders directory for packages and port
      *
      * @var  string
      */
@@ -29,26 +29,26 @@ trait SeederLoaderTrait
      */
     public function runLoadingSeeders()
     {
-        $this->loadSeedersFromContainers();
+        $this->loadSeedersFromPackages();
         $this->loadSeedersFromShip();
     }
 
     /**
-     * loadSeedersFromContainers
+     * loadSeedersFromPackages
      */
-    private function loadSeedersFromContainers()
+    private function loadSeedersFromPackages()
     {
         $seedersClasses = new Collection();
 
-        $containersDirectories = [];
+        $packagesDirectories = [];
 
-        foreach (Apiato::getContainersNames() as $containerName) {
+        foreach (Apiato::getPackagesNames() as $containerName) {
 
-            $containersDirectories[] = base_path('app/Containers/' . $containerName . $this->seedersPath);
+            $packagesDirectories[] = base_path('app/Packages/' . $containerName . $this->seedersPath);
 
         }
 
-        $seedersClasses = $this->findSeedersClasses($containersDirectories, $seedersClasses);
+        $seedersClasses = $this->findSeedersClasses($packagesDirectories, $seedersClasses);
         $orderedSeederClasses = $this->sortSeeders($seedersClasses);
 
         $this->loadSeeders($orderedSeederClasses);
@@ -65,10 +65,10 @@ trait SeederLoaderTrait
 //        foreach (Apiato::getShipFoldersNames() as $portFolderName) {
 //
 //            // Need to Loop over that Directory and load the any Seeder file there.
-//            $containersDirectories[] = base_path('app/Ship/Seeders/Tests');
+//            $packagesDirectories[] = base_path('app/Ship/Seeders/Tests');
 //        }
 //
-//        $seedersClasses = $this->findSeedersClasses($containersDirectories, $seedersClasses);
+//        $seedersClasses = $this->findSeedersClasses($packagesDirectories, $seedersClasses);
 //        $orderedSeederClasses = $this->sortSeeders($seedersClasses);
 //
 //        $this->loadSeeders($orderedSeederClasses);

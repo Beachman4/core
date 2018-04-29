@@ -16,9 +16,9 @@ trait LocalizationLoaderTrait
     /**
      * @param $containerName
      */
-    public function loadLocalsFromContainers($containerName)
+    public function loadLocalsFromPackages($containerName)
     {
-        $containerMigrationDirectory = base_path('app/Containers/' . $containerName . '/Resources/Languages');
+        $containerMigrationDirectory = base_path('app/Packages/' . $containerName . '/Resources/Languages');
 
         $this->loadLocals($containerMigrationDirectory, $containerName);
     }

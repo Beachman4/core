@@ -81,7 +81,7 @@ class RequestGenerator extends GeneratorCommand implements ComponentsGenerator
             $transporterName = $this->checkParameterOrAsk('transportername', 'Enter the Name of the corresponding Transporter to be assigned');
 
             $transporterComment = '';
-            $transporterClass = '\\App\\Containers\\' . $this->containerName . '\\Data\\Transporters\\' . $transporterName . '::class';
+            $transporterClass = '\\App\\Packages\\' . $this->containerName . '\\Data\\Transporters\\' . $transporterName . '::class';
 
             // now create the Transporter
             $this->call('apiato:generate:transporter', [
