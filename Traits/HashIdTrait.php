@@ -2,7 +2,7 @@
 
 namespace Apiato\Core\Traits;
 
-use App\Ship\Exceptions\IncorrectIdException;
+use App\Base\Exceptions\IncorrectIdException;
 use Illuminate\Support\Facades\Config;
 use Route;
 use Vinkla\Hashids\Facades\Hashids;

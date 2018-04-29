@@ -2,7 +2,7 @@
 
 namespace Apiato\Core\Exceptions;
 
-use App\Ship\Parents\Exceptions\Exception;
+use App\Base\Parents\Exceptions\Exception;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 /**

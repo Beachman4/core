@@ -3,8 +3,8 @@
 namespace App\Containers\{{container-name}}\Tasks;
 
 use App\Containers\{{container-name}}\Data\Repositories\{{model}}Repository;
-use App\Ship\Exceptions\CreateResourceFailedException;
-use App\Ship\Parents\Tasks\Task;
+use App\Base\Exceptions\CreateResourceFailedException;
+use App\Base\Parents\Tasks\Task;
 use Exception;
 
 class Create{{model}}Task extends Task

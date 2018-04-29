@@ -8,7 +8,7 @@ use App\Containers\{{container-name}}\UI\{{user-interface}}\Requests\GetAll{{mod
 use App\Containers\{{container-name}}\UI\{{user-interface}}\Requests\Find{{model}}ByIdRequest;
 use App\Containers\{{container-name}}\UI\{{user-interface}}\Requests\Update{{model}}Request;
 use App\Containers\{{container-name}}\UI\{{user-interface}}\Transformers\{{model}}Transformer;
-use App\Ship\Parents\Controllers\{{base-controller}};
+use App\Base\Parents\Controllers\{{base-controller}};
 use Apiato\Core\Foundation\Facades\Apiato;
 
 /**

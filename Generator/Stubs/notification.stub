@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Notifications;
 
-use App\Ship\Parents\Notifications\Notification;
+use App\Base\Parents\Notifications\Notification;
 
 /**
  * Class {{class-name}}

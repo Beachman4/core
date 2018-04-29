@@ -4,7 +4,7 @@ namespace Apiato\Core\Traits;
 
 use Apiato\Core\Abstracts\Requests\Request;
 use Apiato\Core\Abstracts\Transporters\Transporter;
-use App\Ship\Exceptions\InternalErrorException;
+use App\Base\Exceptions\InternalErrorException;
 
 /**
  * Class SanitizerTrait.

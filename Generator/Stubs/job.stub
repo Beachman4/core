@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Jobs;
 
-use App\Ship\Parents\Jobs\Job;
+use App\Base\Parents\Jobs\Job;
 
 /**
  * Class {{class-name}}

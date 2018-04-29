@@ -8,8 +8,8 @@ use Apiato\Core\Traits\HashIdTrait;
 use Apiato\Core\Traits\SanitizerTrait;
 use Apiato\Core\Traits\StateKeeperTrait;
 use App;
-use App\Containers\Authentication\Tasks\GetAuthenticatedUserTask;
-use App\Containers\User\Models\User;
+use App\Packages\Authentication\Tasks\GetAuthenticatedUserTask;
+use App\Packages\User\Models\User;
 use Illuminate\Foundation\Http\FormRequest as LaravelRequest;
 use Illuminate\Support\Facades\Config;
 
@@ -58,7 +58,7 @@ abstract class Request extends LaravelRequest
      * User can set multiple permissions (separated with "|") and if the user has
      * any of the permissions, he will be authorize to proceed with this action.
      *
-     * @param \App\Containers\User\Models\User|null $user
+     * @param \App\Packages\User\Models\User|null $user
      *
      * @return  bool
      */
@@ -103,7 +103,7 @@ abstract class Request extends LaravelRequest
      * To be used mainly from unit tests.
      *
      * @param array                                 $parameters
-     * @param \App\Containers\User\Models\User|null $user
+     * @param \App\Packages\User\Models\User|null $user
      * @param array                                 $cookies
      * @param array                                 $files
      * @param array                                 $server

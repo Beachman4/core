@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Providers;
 
-use App\Ship\Parents\Providers\MainProvider;
+use App\Base\Parents\Providers\MainProvider;
 
 /**
  * Class MainServiceProvider.

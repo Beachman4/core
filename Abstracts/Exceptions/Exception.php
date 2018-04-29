@@ -2,7 +2,7 @@
 
 namespace Apiato\Core\Abstracts\Exceptions;
 
-use App\Ship\Exceptions\Codes\ErrorCodeManager;
+use App\Base\Exceptions\Codes\ErrorCodeManager;
 use Exception as BaseException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\MessageBag;

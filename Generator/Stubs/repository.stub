@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Data\Repositories;
 
-use App\Ship\Parents\Repositories\Repository;
+use App\Base\Parents\Repositories\Repository;
 
 /**
  * Class {{class-name}}

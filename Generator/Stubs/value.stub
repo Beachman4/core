@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Values;
 
-use App\Ship\Parents\Values\Value;
+use App\Base\Parents\Values\Value;
 
 class {{class-name}} extends Value
 {

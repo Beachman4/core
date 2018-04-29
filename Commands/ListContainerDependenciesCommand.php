@@ -3,7 +3,7 @@
 namespace Apiato\Core\Commands;
 
 use Apiato\Core\Transformers\ComposerTransformer;
-use App\Ship\Parents\Commands\ConsoleCommand;
+use App\Base\Parents\Commands\ConsoleCommand;
 use Dotenv\Exception\InvalidPathException;
 use Exception;
 use RecursiveDirectoryIterator;

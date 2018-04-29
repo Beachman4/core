@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Data\Transporters;
 
-use App\Ship\Parents\Transporters\Transporter;
+use App\Base\Parents\Transporters\Transporter;
 
 class {{class-name}} extends Transporter
 {

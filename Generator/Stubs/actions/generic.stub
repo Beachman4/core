@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Actions;
 
-use App\Ship\Parents\Actions\Action;
+use App\Base\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
 
 class {{class-name}} extends Action

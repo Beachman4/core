@@ -3,7 +3,7 @@
 namespace Apiato\Core\Commands;
 
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Ship\Parents\Commands\ConsoleCommand;
+use App\Base\Parents\Commands\ConsoleCommand;
 use File;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -46,11 +46,11 @@ class ListActionsCommand extends ConsoleCommand
      */
     public function handle()
     {
-        foreach (Apiato::getContainersNames() as $containerName) {
+        foreach (Apiato::getPackagesNames() as $containerName) {
 
             $this->console->writeln("<fg=yellow> [$containerName]</fg=yellow>");
 
-            $directory = base_path('app/Containers/' . $containerName . '/Actions');
+            $directory = base_path('app/Packages/' . $containerName . '/Actions');
 
             if (File::isDirectory($directory)) {
 

@@ -2,7 +2,7 @@
 
 namespace App\Containers\{{container-name}}\Tasks;
 
-use App\Ship\Parents\Tasks\Task;
+use App\Base\Parents\Tasks\Task;
 
 class {{class-name}} extends Task
 {
